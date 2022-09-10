@@ -67,11 +67,11 @@ class Web:
 
     def save_page_source(self):
         file_name = '%s_%s.txt' % (self.name, datetime.now().strftime("%Y-%m-%dT%H.%M.%S"))
-        with open(self.log_path + file_name, 'w') as f:
+        with open(self.log_path + file_name, 'w', encoding='utf-8') as f:
             try:
                 f.write(self.driver.page_source)
             except Exception as e:
-                print("Something went wrong when writing to the file")
+                print(e)
             finally:
                 f.close()
 
