@@ -1,13 +1,8 @@
-import logging
 from multiprocessing import Process
-
-logging.basicConfig(format='%(asctime)s.%(msecs)03d %(levelname)-8s %(message)s', level=logging.INFO,
-                    datefmt='%Y-%m-%d %H:%M:%S')
 
 
 def print_func(continent='Asia'):
-    # print('The name of continent is : ', continent)
-    logging.info('The name of continent is : %s' % continent)
+    print('The name of continent is : ', continent)
 
 
 if __name__ == "__main__":  # confirms that the code is under main function
