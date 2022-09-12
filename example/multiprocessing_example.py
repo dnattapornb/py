@@ -34,7 +34,7 @@ def main():
     processes = []
 
     for i in range(number_of_task):
-        tasks_to_accomplish.put("Task no " + str(i))
+        tasks_to_accomplish.put('Task no ' + str(i))
 
     # creating processes
     for w in range(number_of_processes):
