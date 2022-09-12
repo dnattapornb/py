@@ -1,7 +1,7 @@
 import time
 import random
 import pathlib
-import logging
+import Log
 import OperatingSystem
 from datetime import datetime
 from selenium import webdriver
@@ -9,9 +9,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from Credentials import Credentials
-
-logging.basicConfig(format='%(asctime)s.%(msecs)03d %(levelname)-8s %(message)s', level=logging.INFO,
-                    datefmt='%Y-%m-%d %H:%M:%S')
 
 
 class Web:
@@ -60,7 +57,7 @@ class Web:
         self.driver.set_window_position(self.window_position_x, self.window_position_y)
         self.driver.get(self.site_url)
         self.handle = self.driver.window_handles[0]
-        logging.info('{} Open web : {}'.format(self.name, self.handle))
+        Log.info('{} Open web : {}'.format(self.name, self.handle))
 
     def get_handle(self):
         return self.handle
@@ -77,7 +74,8 @@ class Web:
 
     def login(self):
         self.save_page_source()
-        logging.info('{} Login\'s insert : username=\'{}\' password=\'{}\''.format(self.name, self.username, self.password))
+        Log.info(
+            '{} Login\'s insert : username=\'{}\' password=\'{}\''.format(self.name, self.username, self.password))
         # self.username_element = self.driver.find_element(By.ID, 'inputEmail')
         # self.username_element.send_keys(self.username)
         # self.password_element = self.driver.find_element(By.ID, 'inputPassword')
@@ -90,7 +88,7 @@ class Web:
 
             if test_mode:
                 if i == 1:
-                    logging.info('{} Test web : {} times'.format(self.name, self.random_number))
+                    Log.info('{} Test web : {} times'.format(self.name, self.random_number))
                 if i == self.random_number:
                     self.driver.get('https://www.lotto.ktbnetbank.com/KTBLotto/#/login')
 
@@ -103,15 +101,15 @@ class Web:
                 # KTBLotto
                 if 'login' in url:
                     pass
-                    logging.info('{} Login\'s state : {}, {}'.format(self.name, self.handle, url))
+                    Log.info('{} Login\'s state : {}, {}'.format(self.name, self.handle, url))
                     self.login()
                     break
                 else:
-                    logging.info('{} Refresh\'s state : {}, {}'.format(self.name, self.handle, url))
+                    Log.info('{} Refresh\'s state : {}, {}'.format(self.name, self.handle, url))
                     time.sleep(1)
                     self.driver.refresh()
             except Exception as e:
-                logging.error('{} Exception\'s state : {}'.format(self.name, type(e).__name__))
+                Log.error('{} Exception\'s state : {}'.format(self.name, type(e).__name__))
                 self.driver.refresh()
 
 

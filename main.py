@@ -1,12 +1,9 @@
 import time
-import logging
+import Log
 import queue  # imported for using queue.Empty exception
 from multiprocessing import Pool, Lock, Process, Queue, current_process, cpu_count
 from tkinter import *
 from Web import Web
-
-logging.basicConfig(format='%(asctime)s.%(msecs)03d %(levelname)-8s %(message)s', level=logging.INFO,
-                    datefmt='%Y-%m-%d %H:%M:%S')
 
 # url = 'http://127.0.0.1/channel-manager/admin'
 # url = 'https://www3.lotto.ktbnetbank.com/#/login'
@@ -53,11 +50,11 @@ def do_job(tasks_to_accomplish, tasks_that_are_done):
         except queue.Empty:
             break
         else:
-            logging.info('Task : %s' % (task[0]))
+            Log.info('Task : %s' % (task[0]))
             web = Web(url, task[1], task[0])
             web.run(element_id)
             task_done.append(web)
-            logging.info('Task : %s is don by %s.' % (task[0], current_process().name))
+            Log.info('Task : %s is don by %s.' % (task[0], current_process().name))
             tasks_that_are_done.put(task[0] + ' is done by ' + current_process().name)
             time.sleep(.5)
     return True
