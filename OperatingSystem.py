@@ -14,5 +14,15 @@ def get_platform():
     return name
 
 
+def get_web_driver():
+    web_driver = 'chromedriver'
+    if platform == 'mac':
+        web_driver = 'chromedriver'
+    elif platform == 'win':
+        web_driver = 'chromedriver.exe'
+
+    return web_driver
+
+
 if __name__ == '__main__':
     print(get_platform())

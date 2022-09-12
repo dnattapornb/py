@@ -44,11 +44,7 @@ class Web:
 
     def init_path(self):
         platform = OperatingSystem.get_platform()
-        web_driver = 'chromedriver'
-        if platform == 'mac':
-            web_driver = 'chromedriver'
-        elif platform == 'win':
-            web_driver = 'chromedriver.exe'
+        web_driver = OperatingSystem.get_web_driver()
         self.driver_path = Web.ROOT_DIR + '/assets/web/' + platform + '/' + web_driver
         self.log_path = Web.ROOT_DIR + '/assets/log/'
 
