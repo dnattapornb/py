@@ -2,7 +2,6 @@ import time
 import Log
 import queue  # imported for using queue.Empty exception
 from multiprocessing import Pool, Lock, Process, Queue, current_process, cpu_count
-from tkinter import *
 from Web import Web
 
 # url = 'http://127.0.0.1/channel-manager/admin'
@@ -36,9 +35,6 @@ def work_factory(work_data):
 def pool_handler():
     p = Pool(10)
     p.map(work_factory, work)
-
-
-# --------------- [ end : worker + pool ] ---------------
 '''
 
 
@@ -85,24 +81,6 @@ def task_handler():
         print(tasks_that_are_done.get())
 
     return True
-
-
-# --------------- [ start : multiprocessing ] ---------------
-
-
-def create_gui():
-    app = Tk()
-
-    # 1440 x 900
-    # 2560 x 1080
-    sw = app.winfo_screenwidth()
-    sh = app.winfo_screenheight()
-
-    app.title('My GUI')
-    app.geometry('500x400+0+0')
-    Button(app, text='Start', command=task_handler).pack()
-    app.mainloop()
-    print('{} x {}'.format(sw, sh))
 
 
 if __name__ == '__main__':
