@@ -5,8 +5,8 @@ from multiprocessing import Pool, Lock, Process, Queue, current_process, cpu_cou
 from Web import Web
 
 # url = 'http://127.0.0.1/channel-manager/admin'
-# url = 'https://www3.lotto.ktbnetbank.com/#/login'
-url = 'https://www3.lotto.ktbnetbank.com'
+url = 'https://www.lotto.ktbnetbank.com/KTBLotto/#/login'
+# url = 'https://www3.lotto.ktbnetbank.com'
 
 # element_id = 'loginForm'
 element_id = 'headTitleWeb'
@@ -57,7 +57,7 @@ def do_job(tasks_to_accomplish, tasks_that_are_done):
 
 
 def task_handler():
-    number_of_task = 2
+    number_of_task = 8
     number_of_processes = 10
     tasks_to_accomplish = Queue()
     tasks_that_are_done = Queue()

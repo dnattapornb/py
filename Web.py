@@ -96,7 +96,7 @@ class Web:
 
                 # login
                 # KTBLotto
-                if 'login' in url:
+                if 'KTBLotto' in url:
                     pass
                     Log.info('{} Login\'s state : {}, {}'.format(self.name, self.handle, url))
                     self.login()
