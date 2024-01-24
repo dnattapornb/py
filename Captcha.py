@@ -78,7 +78,7 @@ class Captcha:
 
 def test():
     captcha = Captcha()
-    captcha.path('assets/image/captcha/1A3RQ.jpg')
+    captcha.path('assets/image/captcha/4FYLF.jpg')
     img_original = captcha.resize(captcha.img_original, 400)
     img_blur = captcha.blur(img_original)
     img_noise = captcha.noisereduce(img_original)

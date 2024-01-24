@@ -6,7 +6,8 @@ from ppadb.client import Client as AdbClient
 
 ROOT_DIR = sys.path[1]
 img_name = 'screen'
-img_path = ROOT_DIR + '/assets/image/screenshot/' + img_name + '.png'
+# img_path = ROOT_DIR + '/assets/image/screenshot/' + img_name + '.png'
+img_path = 'C:\\Users\\ABOY\\Documents\\py\\assets\\image\\screenshot\\' + img_name + '.png'
 
 # Default is "127.0.0.1" and 5037
 client = AdbClient(host="127.0.0.1", port=5037)
@@ -23,7 +24,7 @@ for device in devices:
     print('Height : %d' % emu_size.height)
     print("\n")
 
-device = client.device("emulator-5554")
+device = client.device("P7WGDI9HYHFEJJUS")
 
 while True:
     result = device.screencap()
@@ -31,5 +32,11 @@ while True:
         fp.write(result)
 
     img = cv2.imread(img_path, cv2.IMREAD_UNCHANGED)
-    cv2.imshow(f"HoughLines", img)
+
+    down_width = 360
+    down_height = 640
+    down_points = (down_width, down_height)
+    resized_down = cv2.resize(img, down_points, interpolation=cv2.INTER_LINEAR)
+
+    cv2.imshow(f"@BOY", resized_down)
     cv2.waitKey(1)
