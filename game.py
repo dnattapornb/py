@@ -15,6 +15,10 @@ print('Client version : %d' % client.version())
 devices = client.devices()
 print('Count devices : %d' % len(devices))
 
+if len(devices) == 0:
+    print('Invalid device attached')
+    quit()
+
 for device in devices:
     print('Device %s' % device.serial)
     print('CPU : %d' % (device.cpu_count()))
@@ -24,7 +28,7 @@ for device in devices:
     print('Height : %d' % emu_size.height)
     print("\n")
 
-device = client.device("P7WGDI9HYHFEJJUS")
+device = client.device("emulator-5564")
 
 while True:
     result = device.screencap()
@@ -33,10 +37,19 @@ while True:
 
     img = cv2.imread(img_path, cv2.IMREAD_UNCHANGED)
 
-    down_width = 360
-    down_height = 640
-    down_points = (down_width, down_height)
-    resized_down = cv2.resize(img, down_points, interpolation=cv2.INTER_LINEAR)
+    # percent by which the image is resized
+    scale_percent = 50
 
-    cv2.imshow(f"@BOY", resized_down)
+    # calculate the 50 percent of original dimensions
+    width = int(emu_size.width * scale_percent / 100)
+    height = int(emu_size.height * scale_percent / 100)
+
+    # dsize
+    dsize = (width, height)
+
+    # resize image
+    output = cv2.resize(img, dsize)
+
+
+    cv2.imshow(f"@BOY", output)
     cv2.waitKey(1)
